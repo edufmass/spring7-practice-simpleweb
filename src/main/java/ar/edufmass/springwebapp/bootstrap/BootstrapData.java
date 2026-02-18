@@ -2,8 +2,10 @@ package ar.edufmass.springwebapp.bootstrap;
 
 import ar.edufmass.springwebapp.domain.Author;
 import ar.edufmass.springwebapp.domain.Book;
+import ar.edufmass.springwebapp.domain.Publisher;
 import ar.edufmass.springwebapp.repositories.AuthorRepository;
 import ar.edufmass.springwebapp.repositories.BookRepository;
+import ar.edufmass.springwebapp.repositories.PublisherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +14,12 @@ public class BootstrapData implements CommandLineRunner {
 
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
+    private final PublisherRepository publisherRepository;
 
-    public BootstrapData(AuthorRepository authorRepository, BookRepository bookRepository) {
+    public BootstrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository  publisherRepository) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
+        this.publisherRepository = publisherRepository;
     }
 
     @Override
@@ -51,6 +55,13 @@ public class BootstrapData implements CommandLineRunner {
         System.out.println("In Bootstrap");
         System.out.println("Author Count: " + authorRepository.count());
         System.out.println("Book Count: " + bookRepository.count());
+
+        Publisher publisher = new Publisher();
+        publisher.setPublisherName("Editorial Test");
+        publisher.setAddress("333 Street");
+        publisherRepository.save(publisher);
+
+        System.out.println("Publisher Count: " + publisherRepository.count());
 
     }
 }
