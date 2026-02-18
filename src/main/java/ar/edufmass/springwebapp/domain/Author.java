@@ -74,5 +74,5 @@ public class Author {
     public int hashCode() {
         return getId() != null ? getId().hashCode() : 0;
     }
-    
+
 }
